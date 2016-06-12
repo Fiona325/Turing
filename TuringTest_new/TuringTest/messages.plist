@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>text</key>
+		<string>你好！我可以帮你查天气、查菜谱、查新闻、查图片、查百科、查机票、查火车、查快递等。时刻准备着为您服务！</string>
+		<key>type</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>输入“成语接龙”，让我们一起来玩成语接龙游戏吧！</string>
+		<key>type</key>
+		<integer>0</integer>
+	</dict>
+</array>
+</plist>
