@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		856E5D851BFC687C000F6617 /* messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 856E5D821BFC687C000F6617 /* messages.plist */; };
-		856E5D861BFC687C000F6617 /* icon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 856E5D831BFC687C000F6617 /* icon01.png */; };
 		856E5DF11BFC81E9000F6617 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 856E5DD11BFC81E9000F6617 /* MKAnnotationView+WebCache.m */; };
 		856E5DF21BFC81E9000F6617 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 856E5DD31BFC81E9000F6617 /* NSData+ImageContentType.m */; };
 		856E5DF31BFC81E9000F6617 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 856E5DD51BFC81E9000F6617 /* SDImageCache.m */; };
@@ -25,6 +24,8 @@
 		856E5DFE1BFC81E9000F6617 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 856E5DEC1BFC81E9000F6617 /* UIImageView+HighlightedWebCache.m */; };
 		856E5DFF1BFC81E9000F6617 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 856E5DEE1BFC81E9000F6617 /* UIImageView+WebCache.m */; };
 		856E5E001BFC81E9000F6617 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 856E5DF01BFC81E9000F6617 /* UIView+WebCacheOperation.m */; };
+		8F1C8DEC1D0E8C6C00E8F6FC /* UICopyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C8DEB1D0E8C6C00E8F6FC /* UICopyLabel.m */; };
+		8F5E497F1D0E714E00E8868A /* icon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F5E497E1D0E714E00E8868A /* icon01.png */; };
 		8F655D651BFF1D1600BD8DA3 /* TRFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F655D5F1BFF1D1600BD8DA3 /* TRFrontViewController.m */; };
 		8F655D6C1BFF1D5300BD8DA3 /* TRMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F655D6B1BFF1D5300BD8DA3 /* TRMessageCell.m */; };
 		8F655D6F1BFF1D8D00BD8DA3 /* TRCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F655D6E1BFF1D8D00BD8DA3 /* TRCellView.m */; };
@@ -75,7 +76,6 @@
 
 /* Begin PBXFileReference section */
 		856E5D821BFC687C000F6617 /* messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = messages.plist; sourceTree = "<group>"; };
-		856E5D831BFC687C000F6617 /* icon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon01.png; sourceTree = "<group>"; };
 		856E5DD01BFC81E9000F6617 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		856E5DD11BFC81E9000F6617 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		856E5DD21BFC81E9000F6617 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -109,6 +109,9 @@
 		856E5DEE1BFC81E9000F6617 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		856E5DEF1BFC81E9000F6617 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		856E5DF01BFC81E9000F6617 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		8F1C8DEA1D0E8C6C00E8F6FC /* UICopyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICopyLabel.h; sourceTree = "<group>"; };
+		8F1C8DEB1D0E8C6C00E8F6FC /* UICopyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICopyLabel.m; sourceTree = "<group>"; };
+		8F5E497E1D0E714E00E8868A /* icon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon01.png; sourceTree = "<group>"; };
 		8F655D5E1BFF1D1600BD8DA3 /* TRFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRFrontViewController.h; sourceTree = "<group>"; };
 		8F655D5F1BFF1D1600BD8DA3 /* TRFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRFrontViewController.m; sourceTree = "<group>"; };
 		8F655D601BFF1D1600BD8DA3 /* TRMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRMainViewController.h; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 			children = (
 				8F655D6A1BFF1D5300BD8DA3 /* TRMessageCell.h */,
 				8F655D6B1BFF1D5300BD8DA3 /* TRMessageCell.m */,
+				8F1C8DEA1D0E8C6C00E8F6FC /* UICopyLabel.h */,
+				8F1C8DEB1D0E8C6C00E8F6FC /* UICopyLabel.m */,
 				8F655D6D1BFF1D7600BD8DA3 /* TRCellView.h */,
 				8F655D6E1BFF1D8D00BD8DA3 /* TRCellView.m */,
 				8F655D701BFF1DCF00BD8DA3 /* TRCellView.xib */,
@@ -387,7 +392,7 @@
 				B5EBAD911B8AF44900EA3E9E /* Info.plist */,
 				B5EBAD921B8AF44900EA3E9E /* main.m */,
 				856E5D821BFC687C000F6617 /* messages.plist */,
-				856E5D831BFC687C000F6617 /* icon01.png */,
+				8F5E497E1D0E714E00E8868A /* icon01.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -507,9 +512,9 @@
 				8F655D711BFF1DCF00BD8DA3 /* TRCellView.xib in Resources */,
 				B5578CAB1B95CE6C0074C2AD /* Localizable.strings in Resources */,
 				856E5D851BFC687C000F6617 /* messages.plist in Resources */,
+				8F5E497F1D0E714E00E8868A /* icon01.png in Resources */,
 				8F9DDDBE1CFC1B6900449CCE /* Main.storyboard in Resources */,
 				B5EBAD9E1B8AF44900EA3E9E /* Images.xcassets in Resources */,
-				856E5D861BFC687C000F6617 /* icon01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +561,7 @@
 				856E5DF71BFC81E9000F6617 /* SDWebImageDownloaderOperation.m in Sources */,
 				8F655D6F1BFF1D8D00BD8DA3 /* TRCellView.m in Sources */,
 				856E5DF11BFC81E9000F6617 /* MKAnnotationView+WebCache.m in Sources */,
+				8F1C8DEC1D0E8C6C00E8F6FC /* UICopyLabel.m in Sources */,
 				856E5DFC1BFC81E9000F6617 /* UIImage+MultiFormat.m in Sources */,
 				8FF64EC91D06C69700CD3FD9 /* MBProgressHUD.m in Sources */,
 				856E5E001BFC81E9000F6617 /* UIView+WebCacheOperation.m in Sources */,

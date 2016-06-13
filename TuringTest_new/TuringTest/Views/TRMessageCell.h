@@ -11,21 +11,22 @@
 #import "TRCellView.h"
 #import "TRList.h"
 #import "PrefixHeader.pch"
+#import "UICopyLabel.h"
+
 
 @interface TRMessageCell : UITableViewCell
+
 //数据项
 @property(nonatomic,strong) TRMessage *message;
 //泡泡图
 @property(nonatomic,strong) UIImageView *popIV;
 //内容标签
-@property(nonatomic,strong)UILabel*contentLb;
+@property(nonatomic,strong)UICopyLabel *contentLb;
 //用于记录当前Cell需要多高才能显示全所有内容
 @property(nonatomic) CGFloat cellHeight;
 
 @property(nonatomic,strong)UIImageView*iconIV;
-
-//@property(nonatomic,strong)TRCellView*cellView;
-
+@property(nonatomic,strong)UIImage*headImage;
 
 
 

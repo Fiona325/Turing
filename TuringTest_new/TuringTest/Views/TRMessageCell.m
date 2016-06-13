@@ -11,12 +11,10 @@
 
 
 @implementation TRMessageCell
-
-
 - (UILabel*)contentLb{
     if (!_contentLb) {
 
-        _contentLb = [UILabel new];
+        _contentLb = [UICopyLabel new];
 //必须允许自动换行
         _contentLb.numberOfLines = 0;
         _contentLb.userInteractionEnabled = YES;
@@ -40,9 +38,11 @@
 //计算泡泡图和标签 的大小 和位置
 //所以我们选择重写message的set方法 来抓住这个时间点
 
+
 -(void)setMessage:(TRMessage *)message{
       self.backgroundColor = [UIColor clearColor];
     _message = message;
+ 
     /*因为开启了autolayout模式，直接获取self.bounds是不准确的
      self.bounds只有在layoutSubViews生命周期之后才准确
      所以获取当前屏幕宽度不能用self.bounds取
@@ -86,7 +86,15 @@
         frameOfPop.size.height += 2*CELL_PADDING;
         self.popIV.frame = frameOfPop;
         //=========头像===================//
-        self.iconIV.image = [UIImage imageNamed:@"icon02.png"];
+        NSData *headData = [[NSUserDefaults standardUserDefaults]objectForKey:@"headImage"];
+       _headImage =  [NSKeyedUnarchiver unarchiveObjectWithData:headData];
+        if (_headImage != nil) {
+            self.iconIV.image = _headImage;
+            self.iconIV.layer.cornerRadius = 5;
+            self.iconIV.clipsToBounds = YES;
+        }else{
+            self.iconIV.image = [UIImage imageNamed:@"icon02.png"];
+        }
 //        self.iconIV.layer.cornerRadius = 20;
 //        self.iconIV.layer.masksToBounds = YES;
         CGFloat iconY = CGRectGetMaxY(frameOfPop) - ICON_SIZE_WH;
@@ -122,8 +130,8 @@
              
         //=========头像===================//
         self.iconIV.image = [UIImage imageNamed:@"icon01.png"];
-//        self.iconIV.layer.cornerRadius = 20;
-//        self.iconIV.layer.masksToBounds = YES;
+        self.iconIV.layer.cornerRadius = 5;
+        self.iconIV.layer.masksToBounds = YES;
         CGFloat iconY = CGRectGetMaxY(self.popIV.frame) - ICON_SIZE_WH;
         self.iconIV.frame = CGRectMake(ICON_MARGIN_LR, iconY , ICON_SIZE_WH, ICON_SIZE_WH);
         [self.contentView addSubview:self.iconIV];

@@ -18,6 +18,7 @@
 #import "TRRVoiceRecognitionManager.h"
 #import "TRRTuringAPIConfig.h"
 #import "TRRSpeechSythesizer.h"
+#import "BDVoiceRecognitionClient.h"
 
 
 
@@ -28,11 +29,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
 @property (weak, nonatomic) IBOutlet UIButton *recordBtn;
-@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, strong) TRRVoiceRecognitionManager *sharedInstance;
 @property (strong, nonatomic) UIButton *voiceRecordButton;
-
+@property (nonatomic, weak) id <TRRVoiceRecognitionManagerDelegate>delegate;
 @property(nonatomic,strong) NSMutableArray *messages;
 //list
 @property(nonatomic,strong)NSArray*lists;
@@ -89,6 +90,7 @@ TRRTuringRequestManager *apiRequest;
     apiRequest = [[TRRTuringRequestManager alloc] initWithConfig:apiConfig];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _delegate = self;
     //注册Cell
     [_tableView registerClass:[TRMessageCell class] forCellReuseIdentifier:@"message"];
     [_tableView registerClass:[TRPictureCell class] forCellReuseIdentifier:@"picture"];
@@ -113,12 +115,10 @@ TRRTuringRequestManager *apiRequest;
         TRPictureCell*pCell = [tableView dequeueReusableCellWithIdentifier:@"picture"];
         pCell.message = message;
         [pCell loadPictureCell:message];
-       
         return pCell;
     }else{
         TRMessageCell*mCell = [tableView dequeueReusableCellWithIdentifier:@"message"];
         mCell.message = message; //这一步调用的set方法
-        
         return mCell;
     }
 }
@@ -179,10 +179,7 @@ TRRTuringRequestManager *apiRequest;
     }];
     [self.view layoutIfNeeded];
 }
-- (IBAction)sendAction:(id)sender {
-    //点击发送按钮触发此方法，清空输入框并发送消息
-    [self sendMessage];
-}
+
 - (IBAction)hideKeyBoard:(id)sender {
     //点击return按钮触发此方法，清空输入框并发送消息
     [self sendMessage];
@@ -208,50 +205,7 @@ TRRTuringRequestManager *apiRequest;
 }
 - (void)sendMessages:(NSString*)textField{
     
-    //    NSString*string = nil;
-    //    if (self.latitude!= 0.0 & self.longitude != 0.0) {
-    //        NSString*city = [self.cityName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    //        string = [NSString stringWithFormat: @"http://www.tuling123.com/openapi/api?key=c7492b8f210dc5cdbf76b3bde66a7c32&&info=%@&&lat=%d&&lon=%d&&%@",textField.text,(int)(self.latitude*1e+006), (int)(self.longitude*1e+006),city];
-    //         string = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    //    }else{
-    //         string = [NSString stringWithFormat:@"http://www.tuling123.com/openapi/api?key=c7492b8f210dc5cdbf76b3bde66a7c32&&info=%@", textField.text];
-    //        string = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    //    }
-    //       NSURL* url = [NSURL URLWithString:string];
-    //
-    //    // 2
-    //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //    [manager GET:url.absoluteString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-    //
-    //        NSLog(@"%@",responseObject);
-    ////        NSString*text = responseObject[@"text"];
-    ////        NSString*urlStr = responseObject[@"url"];
-    ////        NSString*code = responseObject[@"code"];
-    //        TRMessage*message = [TRMessage messageWithResponseObject:responseObject];
-    //            message.type = TRMessageTypeRobot;
-    //       NSMutableArray*listsArray = [TRList lists:responseObject];
-    //       self.lists = listsArray;
-    //        TRList*list1 = listsArray[0];
-    //        NSLog(@"LISTARRAY :%@",self.cell.listArray);
-    ////        TRList*list2 = listsArray[1];
-    //        NSLog(@"name%@",list1.name);
-    //        NSLog(@"info%@",list1.info);
-    //
-    //
-    //        [self.messages addObject:message];
-    //        [self.tableView reloadData];
-    //        //message.text = text;
-    //      //  NSLog(@"%@",text);
-    //        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
-    //            //表格滚动到最后一行
-    //            [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-    //
-    //        [self.view layoutIfNeeded];
-    //
-    //    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    //        NSLog(@"error : %@",error);
-    //    }];
-    [apiConfig request_UserIDwithSuccessBlock:^(NSString *str) {
+        [apiConfig request_UserIDwithSuccessBlock:^(NSString *str) {
        // NSLog(@"result = %@", str);
         [apiRequest request_OpenAPIWithInfo:textField successBlock:^(NSDictionary *dict) {
            //NSLog(@"apiResult =%@",dict);
@@ -430,9 +384,10 @@ TRRTuringRequestManager *apiRequest;
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray<CLLocation *> *)locations{
     CLLocation*location = [locations lastObject];
+    [[BDVoiceRecognitionClient sharedInstance]updateLocation:location];
     self.latitude = location.coordinate.latitude;
     self.longitude = location.coordinate.longitude;
-    NSLog(@"纬度%d 经度%d",(int)(self.latitude*1e+006),(int)(self.longitude*1e+006));
+    //NSLog(@"纬度%d 经度%d",(int)(self.latitude*1e+006),(int)(self.longitude*1e+006));
     CLGeocoder*coder = [CLGeocoder new];
     CLLocation*lct = [[CLLocation alloc]initWithLatitude:self.latitude longitude:self.longitude];
     [coder reverseGeocodeLocation:lct completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -442,11 +397,10 @@ TRRTuringRequestManager *apiRequest;
             if (cityname != nil) {
                 self.cityName = cityname;
             }
-            NSLog(@"cityName:%@",self.cityName);
+            //NSLog(@"cityName:%@",self.cityName);
         }
     }];
-    
-    //    NSLog(@"%@",location.);
+
     [self.mgr stopUpdatingLocation];
 }
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
@@ -459,5 +413,11 @@ TRRTuringRequestManager *apiRequest;
         NSLog(@"用户拒绝定位");
     }
 }
-
+- (void)setCityID: (NSInteger)cityID{
+    
+}
+- (void)updateLocation:(CLLocation *)location{
+    NSLog(@"location:%@",location);
+      NSLog(@"location:%@",location);
+}
 @end
