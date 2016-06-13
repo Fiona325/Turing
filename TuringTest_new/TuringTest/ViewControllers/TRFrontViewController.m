@@ -8,7 +8,7 @@
 
 #import "TRFrontViewController.h"
 #import "TRMainViewController.h"
-
+#import "TRMessageCell.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 
@@ -41,6 +41,7 @@
     tap.numberOfTapsRequired = 1;
     [self.frameImageView addGestureRecognizer:tap];
 }
+
 - (void)appearAlertController {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:0];
     UIAlertAction *action_album = [UIAlertAction actionWithTitle:@"从相册选择" style:0 handler:^(UIAlertAction * _Nonnull action) {
@@ -81,7 +82,8 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
   
     self.headImage = info[UIImagePickerControllerEditedImage];
-    
+    NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:self.headImage];
+    [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:@"headImage"];
     self.imageView.image = self.headImage;
     self.imageView.layer.cornerRadius = 50;
     self.imageView.layer.masksToBounds = YES;
@@ -108,7 +110,6 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
      
-
          TRMainViewController*mainVC = [segue destinationViewController];
          mainVC.myImage = self.headImage;
 
